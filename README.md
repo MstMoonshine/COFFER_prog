@@ -21,7 +21,7 @@ API and demo programs for COFFER TEE.
 │   ├── manager.c
 │   └── payload.c
 ├── Makefile
-├── payloads				# Enclave payload ELFs 
+├── payloads					# Enclave payload ELFs 
 │   ├── Makefile
 │   ├── testpayload.c
 │   └── write.c
