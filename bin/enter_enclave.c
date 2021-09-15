@@ -1,4 +1,5 @@
 #include <manager.h>
+#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
@@ -9,6 +10,6 @@ int main(int argc, char *argv[])
 
 	unsigned int id = atoi(argv[1]);
 	enterEnclave(id);
-	
+
 	exit(0);
 }
