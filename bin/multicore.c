@@ -40,7 +40,7 @@ int main()
 	}
 
 	for (int i = 0; i < MAXN; i++) {
-		c_eid = i + 1;
+		c_eid = eid[i];
 		if (!(pid[i] = fork())) {
 			printf("[Child] c_eid = %d\n", c_eid);
 			fflush(stdout);
@@ -69,7 +69,7 @@ int main()
 			perror("USR1 failed");
 	}
 
-	sleep(0.1);
+	sleep(0.5);
 
 	printf("Launch\n");
 	fflush(stdout);
