@@ -45,5 +45,6 @@ void exitEnclave(unsigned int id);
 long int gettime();
 void resume(int id);
 void dump_hartid();
+void dump_enclave_status();
 
 #endif

@@ -78,7 +78,12 @@ void resume(int id)
     SBI_CALL5(0x19260817, id, 0, 0, 404);
 }
 
-void dump_hartid()
+void dump_enclave_status()
 {
     SBI_CALL5(0x19260817, 0, 0, 0, 499);
+}
+
+void dump_hartid()
+{
+    SBI_CALL5(0x19260817, 1, 0, 0, 499);
 }
