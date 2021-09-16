@@ -42,8 +42,8 @@ int readFile(const char* path, char** data);
 unsigned int createEnclave(const char* path, uintptr_t bitmask);
 void enterEnclave(unsigned int id);
 void exitEnclave(unsigned int id);
-void dumpLayout();
 long int gettime();
 void resume(int id);
+void dump_hartid();
 
 #endif

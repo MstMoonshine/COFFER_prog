@@ -54,7 +54,6 @@ unsigned int createEnclave(const char* path, uintptr_t bitmask)
 void enterEnclave(unsigned int id)
 {
     SBI_CALL5(0x19260817, id, 0, 0, 400);
-    // SBI_CALL5(0x19260817, id, 0, 0, 404);
     return;
 }
 
@@ -62,11 +61,6 @@ void exitEnclave(unsigned int id)
 {
     SBI_CALL(401, id, 0, 0);
     return;
-}
-
-void dumpLayout()
-{
-    SBI_CALL5(0xdeadbeef, 0, 0, 0, 1);
 }
 
 long int gettime()
@@ -82,4 +76,9 @@ long int gettime()
 void resume(int id)
 {
     SBI_CALL5(0x19260817, id, 0, 0, 404);
+}
+
+void dump_hartid()
+{
+    SBI_CALL5(0x19260817, 0, 0, 0, 499);
 }
