@@ -36,7 +36,7 @@ unsigned int createEnclave(const char* path, uintptr_t bitmask)
 {
     char* payload;
     unsigned int len = readFile(path, &payload), eid;
-    register uintptr_t a0;
+    volatile register uintptr_t a0;
 
     if (len == -1)
         exit(-1);
@@ -88,7 +88,42 @@ void dump_enclave_status()
     SBI_CALL5(0x19260817, 0, 0, 0, 499);
 }
 
+void dump_enclave_mem()
+{
+    SBI_CALL5(0x19260817, 2, 0, 0, 499);
+}
+
 void dump_hartid()
 {
     SBI_CALL5(0x19260817, 1, 0, 0, 499);
+}
+
+int enclave_num()
+{
+    int count;
+    volatile register uintptr_t a0;
+    SBI_CALL5(0x19260817, 3, 0, 0, 499);
+    asm volatile("mv %0,a0"
+                 : "=r"(count));
+    return count;
+}
+
+int compacted()
+{
+    int flag;
+    volatile register uintptr_t a0;
+    SBI_CALL5(0x19260817, 4, 0, 0, 499);
+    asm volatile("mv %0,a0"
+                 : "=r"(flag));
+    return flag;
+}
+
+int check_alive(int eid)
+{
+    int status; // dead or alive
+    volatile register uintptr_t a0;
+    SBI_CALL5(0x19260817, 5, eid, 0, 499);
+    asm volatile("mv %0,a0"
+                 : "=r"(status));
+    return status;
 }

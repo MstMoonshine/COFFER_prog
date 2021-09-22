@@ -47,5 +47,9 @@ void suspend_enclave(int id);
 void resume_enclave(int id);
 void dump_hartid();
 void dump_enclave_status();
+void dump_enclave_mem();
+int enclave_num();
+int compacted();
+int check_alive(int eid);
 
 #endif
