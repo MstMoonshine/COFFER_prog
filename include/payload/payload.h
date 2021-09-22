@@ -38,6 +38,7 @@
 	__tmp; })
 
 void dumpLayout();
-void suspend();
+void suspend_enclave();
+int randint();
 
 #endif
