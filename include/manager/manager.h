@@ -43,7 +43,8 @@ unsigned int createEnclave(const char* path, uintptr_t bitmask);
 void enterEnclave(unsigned int id);
 void exitEnclave(unsigned int id);
 long int gettime();
-void resume(int id);
+void suspend_enclave(int id);
+void resume_enclave(int id);
 void dump_hartid();
 void dump_enclave_status();
 

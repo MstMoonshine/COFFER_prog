@@ -73,7 +73,12 @@ long int gettime()
     return usec;
 }
 
-void resume(int id)
+void suspend_enclave(int id)
+{
+    SBI_CALL5(0x19260817, id, 0, 0, 403);
+}
+
+void resume_enclave(int id)
 {
     SBI_CALL5(0x19260817, id, 0, 0, 404);
 }
