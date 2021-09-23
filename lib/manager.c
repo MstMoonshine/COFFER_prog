@@ -85,6 +85,8 @@ void resume_enclave(int id)
 
 void dump_enclave_status()
 {
+	printf("Currently %d enclaves:\n", enclave_num());
+    fflush(stdout);
     SBI_CALL5(0x19260817, 0, 0, 0, 499);
 }
 
