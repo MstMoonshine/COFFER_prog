@@ -21,7 +21,8 @@ void main()
 	while (total < BYTES_MAX_NUM) {
 		if (total > 0 && randint() % 100 > 95) {
 			// printf("die\n");
-			return;
+			// return;;
+			;
 		}
 
 		int rand_num = bytes[randint() % TYPE_NUM];
