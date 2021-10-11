@@ -1104,6 +1104,8 @@ int main()
 	u8 *ct = malloc(DATA_SIZE);
 	u8 *pt2 = malloc(DATA_SIZE);
 
+	dump_mem_usage();
+
 	/* create test pattern */
 	char c = 0x01;
 	for (size_t j = 0; j < DATA_SIZE; j+= sizeof(int)) {

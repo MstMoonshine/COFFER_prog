@@ -22,3 +22,8 @@ int randint()
 
     return rand_state;
 }
+
+void dump_mem_usage()
+{
+    SBI_CALL5(0x19260817, 7, 0, 0, 499);
+}

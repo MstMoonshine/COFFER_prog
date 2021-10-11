@@ -129,3 +129,8 @@ int check_alive(int eid)
                  : "=r"(status));
     return status;
 }
+
+void dump_mem_usage()
+{
+    SBI_CALL5(0x19260817, 7, 0, 0, 499);
+}

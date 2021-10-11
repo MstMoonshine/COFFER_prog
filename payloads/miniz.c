@@ -8471,6 +8471,8 @@ int main()
       return EXIT_FAILURE;
     }
 
+    dump_mem_usage();
+
     // Compress the string.
     cmp_status = compress(pCmp, &cmp_len, (const unsigned char *)pData, src_len);
     if (cmp_status != Z_OK)

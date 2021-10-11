@@ -195,6 +195,7 @@ int main()
 	unsigned long cycle3 = read_csr(cycle);
 	int *arr = malloc(ARRAY_SIZE * sizeof(int));
 	int val = 1;
+	dump_mem_usage();
 
 	for (size_t i = 0; i < ARRAY_SIZE; i++) {
 		arr[i] = val;

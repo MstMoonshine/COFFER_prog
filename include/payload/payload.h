@@ -40,5 +40,6 @@
 void dumpLayout();
 void suspend_enclave();
 int randint();
+void dump_mem_usage();
 
 #endif

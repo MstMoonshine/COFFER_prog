@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[])
 {
-	static long turn = 1;
+	volatile static long turn = 1;
 	static long i = 3;
 	static long eid[ENC_MAX] = {1};
 
@@ -15,26 +15,24 @@ int main(int argc, char *argv[])
 	}
 	const int max = atoi(argv[1]);
 
-
-	for (i = 0; i < max; i++) {
-		eid[i] = i + 1;
-	}
-
 	while (1) {
-		printf("turn %d\n", turn++);
+		// printf("turn %d\n", turn++);
+		if (turn > 200)
+			return 0;
 		fflush(stdout);
 		for (i = 0; i < max; i++) {
-			int alive = check_alive(eid[i]);
+			int alive = check_alive(i + 1);
 			if (!alive) {
-				eid[i] = createEnclave("../payloads/malloc_and_wait", -1);
-				enterEnclave(eid[i]);
+				createEnclave("../payloads/malloc_and_wait", -1);
+				enterEnclave(i + 1);
 			} else {
-				printf("resume %ld\n", eid[i]);
+				// printf("resume %ld\n", i + 1);
 				fflush(stdout);
-				resume_enclave(eid[i]);
+				resume_enclave(i + 1);
 			}
-			dump_enclave_status();
-			dump_enclave_mem();
+			// dump_enclave_status();
+			// dump_enclave_mem();
+			dump_mem_usage();
 		}
 	}
 }
