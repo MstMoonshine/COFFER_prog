@@ -129,3 +129,9 @@ int check_alive(int eid)
                  : "=r"(status));
     return status;
 }
+
+int module_register()
+{
+    SBI_CALL5(0x19260817, 0x11223344, 0, 0, 0);
+    return 0;
+}

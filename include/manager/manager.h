@@ -51,5 +51,6 @@ void dump_enclave_mem();
 int enclave_num();
 int compacted();
 int check_alive(int eid);
+int module_register();
 
 #endif
