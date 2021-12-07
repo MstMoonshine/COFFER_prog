@@ -134,3 +134,9 @@ void dump_mem_usage()
 {
     SBI_CALL5(0x19260817, 7, 0, 0, 499);
 }
+
+int module_register()
+{
+    SBI_CALL5(0x19260817, 0, 0x22, 0x33, 450);
+    return 0;
+}
