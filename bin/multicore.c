@@ -17,7 +17,7 @@ void handler(int sig)
 	case SIGUSR2:
 		printf("[Child] Entering enclave %d\n", c_eid);
 		fflush(stdout);
-		enterEnclave(c_eid);
+		enterEnclave(c_eid, 0, 0);
 		exit(0);
 		break;
 	default:
