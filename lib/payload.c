@@ -1,4 +1,5 @@
 #include "../include/payload/payload.h"
+#include "../include/ebi_ecall.h"
 
 void dumpLayout()
 {

@@ -1,4 +1,6 @@
 #include "../include/manager/manager.h"
+#include "../include/ebi_ecall.h"
+#include "../include/types.h"
 
 int readFile(const char* path, char** data)
 {
@@ -152,4 +154,11 @@ int module_register(const char* path, uintptr_t eid, uint32_t mod_id)
 
     free(module);
     return ret;
+}
+
+int start_channel(u64 sender_eid, u8 *buf, usize len)
+{
+    SBI_CALL5(0x19260817, sender_eid, (u64)buf, len, SBI_EXT_EBI_LISTEN_MESSAGE);
+
+    return 0;
 }

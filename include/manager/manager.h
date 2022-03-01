@@ -10,6 +10,7 @@
 #include <sys/mman.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include "../types.h"
 
 #define SBI_CALL(___which, ___arg0, ___arg1, ___arg2) ({     \
     register uintptr_t a0 asm("a0") = (uintptr_t)(___arg0);  \
@@ -66,5 +67,6 @@ int compacted();
 int check_alive(int eid);
 void dump_mem_usage();
 int module_register();
+int start_channel(u64 sender_eid, u8 *buf, usize len);
 
 #endif
