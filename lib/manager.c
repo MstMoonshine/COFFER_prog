@@ -135,8 +135,21 @@ void dump_mem_usage()
     SBI_CALL5(0x19260817, 7, 0, 0, 499);
 }
 
-int module_register()
+int module_register(const char* path, uintptr_t eid, uint32_t mod_id)
 {
-    SBI_CALL5(0x19260817, 0, 0x22, 0x33, 450);
-    return 0;
+    char *module;
+    unsigned int len = readFile(path, &module), ret;
+    volatile register uintptr_t a0;
+
+    if (len == -1) {
+        printf("error reading");
+        exit(-1);
+    }
+
+    SBI_CALL6(0x19260817, eid, module, len, mod_id, 450);
+    asm volatile("mv %0,a0"
+                 : "=r"(ret));
+
+    free(module);
+    return ret;
 }
