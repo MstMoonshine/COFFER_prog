@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
 
 	unsigned int id = createEnclave(argv[1], -1);
 
+	printf("Back from the enclave\n");
+
 	while (*buf == 0);
 	printf("Message Received!\n");
 	for (int i = 0; i < LEN; i++) {
