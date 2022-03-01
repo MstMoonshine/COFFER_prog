@@ -51,9 +51,9 @@ unsigned int createEnclave(const char* path, uintptr_t bitmask)
     return eid;
 }
 
-void enterEnclave(unsigned int id)
+void enterEnclave(unsigned int id, int argc, char** argv)
 {
-    SBI_CALL5(0x19260817, id, 0, 0, 400);
+    SBI_CALL5(0x19260817, id, argc, argv, 400);
     return;
 }
 
@@ -85,7 +85,7 @@ void resume_enclave(int id)
 
 void dump_enclave_status()
 {
-	printf("Currently %d enclaves:\n", enclave_num());
+    printf("Currently %d enclaves:\n", enclave_num());
     fflush(stdout);
     SBI_CALL5(0x19260817, 0, 0, 0, 499);
 }
