@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < LEN; i++) {
 		printf("0x%x\t", buf[i]);
 	}
+	printf("\n");
 
 	resume_enclave(EID); // Solve this! Hardcoded EID!
 
@@ -32,6 +33,7 @@ int main(int argc, char *argv[])
 		buf[i] = i;
 	}
 	send_message(EID, buf, LEN); // Solve this! Hardcoded EID!
+	resume_enclave(EID);
 
 	if (id >= 0) {
 		printf("Enclave created successfully, id = %u\n", id);
