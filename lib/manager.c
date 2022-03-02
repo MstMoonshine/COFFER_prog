@@ -162,3 +162,10 @@ int start_channel(u64 sender_eid, u8 *buf, usize len)
 
     return 0;
 }
+
+int send_message(u64 receiver_eid, u8 *buf, usize len)
+{
+    SBI_CALL5(0x19260817, receiver_eid, (u64)buf, len, SBI_EXT_EBI_SEND_MESSAGE);
+
+    return 0;
+}

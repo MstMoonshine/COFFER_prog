@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #define LEN 0x10
+#define EID 1 // Solve this! Hardcoded EID!
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +13,7 @@ int main(int argc, char *argv[])
 	}
 
 	char volatile *buf = (char *)malloc(LEN);
-	start_channel(1, buf, LEN);	
+	start_channel(EID, buf, LEN);	 // Solve this! Hardcoded EID!
 
 	unsigned int id = createEnclave(argv[1], -1);
 
@@ -21,8 +22,16 @@ int main(int argc, char *argv[])
 	while (*buf == 0);
 	printf("Message Received!\n");
 	for (int i = 0; i < LEN; i++) {
-		printf("0x%x\n", buf[i]);
+		printf("0x%x\t", buf[i]);
 	}
+
+	resume_enclave(EID); // Solve this! Hardcoded EID!
+
+	printf("Back from the enclave again\n");
+	for (int i = 0; i < LEN; i++) {
+		buf[i] = i;
+	}
+	send_message(EID, buf, LEN); // Solve this! Hardcoded EID!
 
 	if (id >= 0) {
 		printf("Enclave created successfully, id = %u\n", id);

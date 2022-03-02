@@ -68,5 +68,6 @@ int check_alive(int eid);
 void dump_mem_usage();
 int module_register();
 int start_channel(u64 sender_eid, u8 *buf, usize len);
+int send_message(u64 receiver_eid, u8 *buf, usize len);
 
 #endif
