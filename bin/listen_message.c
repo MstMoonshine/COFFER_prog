@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 	char* payload;
 	unsigned int emod_len = readFile("/drv_mmc.bin",
 		&payload);
+	printf("emodule len = %u\n", emod_len);
 	send_message(eid, payload, emod_len);
 
 	resume_enclave(eid);
