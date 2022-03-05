@@ -3,7 +3,6 @@
 #include <stdio.h>
 
 #define LEN 0x10
-#define EID 1 // Solve this! Hardcoded EID!
 
 int main(int argc, char *argv[])
 {
@@ -11,14 +10,14 @@ int main(int argc, char *argv[])
 		printf("Usage: %s [path_to_payload]\n", argv[0]);
 		exit(0);
 	}
+	unsigned int eid = createEnclave(argv[1], -1);
 
 	char volatile *buf = (char *)malloc(LEN);
-	start_channel(EID, buf, LEN);	 // Solve this! Hardcoded EID!
+	start_channel(eid, buf, LEN);
 
-	unsigned int id = createEnclave(argv[1], -1);
+	enterEnclave(eid, 0, NULL);
 
 	printf("Back from the enclave\n");
-
 	while (*buf == 0);
 	printf("Message Received!\n");
 	for (int i = 0; i < LEN; i++) {
@@ -26,18 +25,10 @@ int main(int argc, char *argv[])
 	}
 	printf("\n");
 
-	resume_enclave(EID); // Solve this! Hardcoded EID!
+	char* payload;
+	unsigned int emod_len = readFile("/drv_mmc.bin",
+		&payload);
+	send_message(eid, payload, emod_len);
 
-	printf("Back from the enclave again\n");
-	for (int i = 0; i < LEN; i++) {
-		buf[i] = i;
-	}
-	send_message(EID, buf, LEN); // Solve this! Hardcoded EID!
-	resume_enclave(EID);
-
-	if (id >= 0) {
-		printf("Enclave created successfully, id = %u\n", id);
-	} else {
-		printf("Enclave creation failed");
-	}
+	resume_enclave(eid);
 }
