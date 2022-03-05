@@ -11,14 +11,11 @@ int main(int argc, char *argv[])
 		exit(0);
 	}
 	unsigned int eid = 1;
-	createEnclave(argv[1], -1);
-
-	printf("enclave created: eid = %u\n", eid);
 
 	char volatile *buf = (char *)malloc(LEN);
 	start_channel(eid, buf, LEN);
 
-	enterEnclave(eid, 0, NULL);
+	createEnclave(argv[1], -1);
 
 	printf("Back from the enclave\n");
 	while (*buf == 0);
