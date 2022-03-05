@@ -10,7 +10,8 @@ int main(int argc, char *argv[])
 		printf("Usage: %s [path_to_payload]\n", argv[0]);
 		exit(0);
 	}
-	unsigned int eid = createEnclave(argv[1], -1);
+	unsigned int eid = 1;
+	createEnclave(argv[1], -1);
 
 	printf("enclave created: eid = %u\n", eid);
 
