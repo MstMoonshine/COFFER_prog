@@ -12,6 +12,8 @@ int main(int argc, char *argv[])
 	}
 	unsigned int eid = createEnclave(argv[1], -1);
 
+	printf("enclave created: eid = %u\n", eid);
+
 	char volatile *buf = (char *)malloc(LEN);
 	start_channel(eid, buf, LEN);
 
